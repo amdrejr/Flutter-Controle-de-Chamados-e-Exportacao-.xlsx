@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'envio_dado.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import 'listagem_maq_motivos.dart';
+
 class Formulario extends StatefulWidget {
   const Formulario();
 
@@ -12,19 +14,6 @@ class Formulario extends StatefulWidget {
 List<EnvioDado> dados = [];
 
 class _FormularioState extends State<Formulario> {
-  final listagem = [
-    'SCS 1-1',
-    'Mini Load',
-    'Linha 1',
-  ];
-  final motivos = [
-    'Medida livre',
-    'Ladder quebrado',
-    'Cabide enroscado',
-    'Motivo 4',
-    'Motivo 5',
-  ];
-
   String? valorMaq;
   String? valorMotivo;
 
@@ -74,7 +63,7 @@ class _FormularioState extends State<Formulario> {
                               hint: const Text('Selecione a Máquina: '),
                               dropdownColor: Colors.grey[700],
                               value: valorMaq,
-                              items: listagem.map(buildMenuItem).toList(),
+                              items: Lista.listagem.map(buildMenuItem).toList(),
                               onChanged: (value) =>
                                   setState(() => valorMaq = value),
                             ),
@@ -112,7 +101,7 @@ class _FormularioState extends State<Formulario> {
                             hint: const Text('Selecione o Motivo: '),
                             alignment: AlignmentDirectional.center,
                             value: valorMotivo,
-                            items: motivos.map(buildMenuItem).toList(),
+                            items: Lista.motivos.map(buildMenuItem).toList(),
                             onChanged: (value) =>
                                 setState(() => valorMotivo = value),
                           ),
