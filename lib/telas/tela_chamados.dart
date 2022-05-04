@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_faculdade/funcionalidades/drawer_navegacao.dart';
 import 'package:projeto_faculdade/funcionalidades/envio_dado.dart';
+import 'package:projeto_faculdade/funcionalidades/formulario.dart';
 import 'package:projeto_faculdade/funcionalidades/gerar_excel.dart';
 
 class TelaChamados extends StatefulWidget {
@@ -17,12 +18,10 @@ class _TelaChamadosState extends State<TelaChamados> {
   EnvioDado? dadoDeletado;
   int? posicaoDadoDeletado;
 
-  get dados => null;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const DrawerNavegacao(),
+      //drawer: DrawerNavegacao(),
       appBar: AppBar(
         title: const Text('Chamados Lançados'),
       ),
@@ -41,49 +40,25 @@ class _TelaChamadosState extends State<TelaChamados> {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BotaoTelaChamado(
-                  texto: 'Limpar todos Chamados',
-                  cor: Colors.red,
-                  icone: Icons.delete_forever,
-                  acao: () {}),
-              BotaoTelaChamado(
-                  texto: 'Gerar Planilha',
-                  cor: Colors.green,
-                  icone: Icons.receipt_long_rounded,
-                  acao: () {
-                    GerarExcel().createExcel();
-                  }),
-            ],
-          ),
-          /*
-          ////////// APAGAR DEPOIS
-          ElevatedButton(
-            onPressed: () {
-              print(dados.length);
-            },
-            child: Text('Length dados'),
-          ),
-          ////////// APAGAR DEPOIS
-          ElevatedButton(
-            onPressed: () {
-              if (dados.isNotEmpty) {
-                for (var i = 0; i < dados.length; i++) {
-                  print(dados[i].dateTime);
-                  print(dados[i].maquina);
-                  print(dados[i].inicioParada);
-                  print(dados[i].voltaParada);
-                  print(dados[i].motivo);
-                  print('---');
-                }
-              } else
-                print('vazio');
-            },
-            child: Text('Printar dados'),
-          ),
-          */
+          dados.isNotEmpty
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    BotaoTelaChamado(
+                        texto: 'Limpar todos Chamados',
+                        cor: Colors.red,
+                        icone: Icons.delete_forever,
+                        acao: () {}),
+                    BotaoTelaChamado(
+                        texto: 'Gerar Planilha',
+                        cor: Colors.green,
+                        icone: Icons.receipt_long_rounded,
+                        acao: () {
+                          GerarExcel().createExcel();
+                        }),
+                  ],
+                )
+              : const SizedBox(),
         ],
       ),
     );

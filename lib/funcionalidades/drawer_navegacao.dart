@@ -3,7 +3,7 @@ import 'package:projeto_faculdade/telas/tela_chamados.dart';
 import 'package:projeto_faculdade/telas/tela_principal.dart';
 
 class DrawerNavegacao extends StatelessWidget {
-  const DrawerNavegacao({
+  DrawerNavegacao({
     Key? key,
   }) : super(key: key);
 
@@ -16,6 +16,7 @@ class DrawerNavegacao extends StatelessWidget {
             accountName: Text('Nome do Usuário'),
             accountEmail: Text('RA: 123456789'),
           ),
+          /* ListTile do Drawer, ir para tela de lançar chamados
           ListTile(
             leading: const Icon(Icons.content_paste_sharp),
             title: const Text('Abrir Chamados'),
@@ -31,17 +32,17 @@ class DrawerNavegacao extends StatelessWidget {
               );
             },
           ),
+          */
           ListTile(
             leading: const Icon(Icons.receipt_long_sharp),
             title: const Text('Consultar Chamados'),
             subtitle: const Text('Todos chamados lançados.'),
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.pop(context);
+              Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) {
-                    return TelaChamados();
-                  },
+                  builder: (context) => TelaChamados(),
                 ),
               );
             },

@@ -16,7 +16,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       appBar: AppBar(
         title: const Text('Reportar Chamados'),
       ),
-      drawer: const DrawerNavegacao(),
+      drawer: DrawerNavegacao(),
       body: Column(
         children: [
           Expanded(
