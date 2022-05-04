@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_faculdade/formulario.dart';
-
-import 'drawer_navegacao.dart';
+import 'package:projeto_faculdade/funcionalidades/drawer_navegacao.dart';
+import 'package:projeto_faculdade/funcionalidades/formulario.dart';
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({Key? key}) : super(key: key);

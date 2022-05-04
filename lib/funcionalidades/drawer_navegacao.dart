@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_faculdade/tela_principal.dart';
-import 'tela_chamados.dart';
+import 'package:projeto_faculdade/telas/tela_chamados.dart';
+import 'package:projeto_faculdade/telas/tela_principal.dart';
 
 class DrawerNavegacao extends StatelessWidget {
   const DrawerNavegacao({
