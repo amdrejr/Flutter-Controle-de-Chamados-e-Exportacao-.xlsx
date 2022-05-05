@@ -16,6 +16,7 @@ List<EnvioDado> dados = [];
 class _FormularioState extends State<Formulario> {
   String? valorMaq;
   String? valorMotivo;
+  int RadioValor = 1;
 
   final TextEditingController inicioController = TextEditingController();
   final TextEditingController terminoController = TextEditingController();
@@ -27,27 +28,32 @@ class _FormularioState extends State<Formulario> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.grey.shade600, Colors.blueGrey.shade600]),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 34, 16, 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          child: SizedBox(
+    return ScrollConfiguration(
+      // Remover brilho do Scroll
+      // Link para entender https://stackoverflow.com/questions/51119795/how-to-remove-scroll-glow
+      behavior: RemoverBriloScroll(),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.grey.shade600, Colors.blueGrey.shade600]),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, top: 30, bottom: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(width: 10),
+                          SizedBox(
                             width: 270,
                             child: DropdownButtonFormField<String>(
                               // MAQUINA
@@ -68,54 +74,53 @@ class _FormularioState extends State<Formulario> {
                                   setState(() => valorMaq = value),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  CampoTempo(
-                    texto: 'Início Parada',
-                    controlador: inicioController,
-                  ),
-                  CampoTempo(
-                    texto: 'Volta Parada',
-                    controlador: terminoController,
-                  ),
-                  Padding(
-                    // MOTIVO
-                    padding: const EdgeInsets.all(25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          width: 270,
-                          child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Máquina Selecionada:',
-                              prefixIcon: Icon(
-                                Icons.manage_accounts_outlined,
-                                size: 25,
+                    CampoTempo(
+                      texto: 'Início Parada',
+                      controlador: inicioController,
+                    ),
+                    CampoTempo(
+                      texto: 'Volta Parada',
+                      controlador: terminoController,
+                    ),
+                    Padding(
+                      // MOTIVO
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, top: 15, bottom: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(width: 10),
+                          SizedBox(
+                            width: 270,
+                            child: DropdownButtonFormField<String>(
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Motivo do Chamado:',
+                                prefixIcon: Icon(
+                                  Icons.manage_accounts_outlined,
+                                  size: 25,
+                                ),
                               ),
+                              hint: const Text('Selecione o Motivo: '),
+                              alignment: AlignmentDirectional.center,
+                              value: valorMotivo,
+                              items: Lista.motivos.map(buildMenuItem).toList(),
+                              onChanged: (value) =>
+                                  setState(() => valorMotivo = value),
                             ),
-                            hint: const Text('Selecione o Motivo: '),
-                            alignment: AlignmentDirectional.center,
-                            value: valorMotivo,
-                            items: Lista.motivos.map(buildMenuItem).toList(),
-                            onChanged: (value) =>
-                                setState(() => valorMotivo = value),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    radioBuild(),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 5),
-            Expanded(
-              // BOTÕES
-              child: Row(
+              const SizedBox(height: 50),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BotaoAp(
@@ -130,37 +135,124 @@ class _FormularioState extends State<Formulario> {
                       }),
                   const SizedBox(width: 30),
                   BotaoAp(
-                      texto: 'Salvar',
-                      acao: () {
-                        String dadoInicio = inicioController.text;
-                        String dadoTermino = terminoController.text;
-                        if (dadoInicio.isNotEmpty &&
-                            dadoTermino.isNotEmpty &&
-                            valorMaq != null &&
-                            valorMotivo != null) {
-                          EnvioDado newDado = EnvioDado(
-                            maquina: valorMaq!,
-                            inicioParada: dadoInicio,
-                            voltaParada: dadoTermino,
-                            motivo: valorMotivo!,
-                            dateTime: DateTime.now(),
-                          );
-                          dados.add(newDado);
-                          inicioController.clear();
-                          terminoController.clear();
-                          setState(() {
+                    texto: 'Salvar',
+                    acao: () {
+                      String dadoInicio = inicioController.text;
+                      String dadoTermino = terminoController.text;
+                      if (dadoInicio.isNotEmpty &&
+                          dadoTermino.isNotEmpty &&
+                          valorMaq != null &&
+                          valorMotivo != null) {
+                        EnvioDado newDado = EnvioDado(
+                          maquina: valorMaq!,
+                          inicioParada: dadoInicio,
+                          voltaParada: dadoTermino,
+                          motivo: valorMotivo!,
+                          dateTime: DateTime.now(),
+                          radioDado: radioConvert(),
+                        );
+                        dados.add(newDado);
+                        inicioController.clear();
+                        terminoController.clear();
+                        setState(
+                          () {
                             valorMaq = null;
                             valorMotivo = null;
-                          });
-                        }
-                      }),
+                          },
+                        );
+                      }
+                    },
+                  ),
                 ],
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Widget radioBuild() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(top: 15, bottom: 15),
+          child: Text(
+            'Natureza da Operação:',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Radio(
+              value: 1,
+              groupValue: RadioValor,
+              onChanged: (int? change) {
+                setState(
+                  () {
+                    RadioValor = change!;
+                    print(RadioValor);
+                  },
+                );
+              },
+            ),
+            const Text('Manutenção', style: TextStyle(color: Colors.white)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Radio(
+              value: 2,
+              groupValue: RadioValor,
+              onChanged: (int? change) {
+                setState(
+                  () {
+                    RadioValor = change!;
+                    print(RadioValor);
+                  },
+                );
+              },
+            ),
+            const Text('Operacional', style: TextStyle(color: Colors.white)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Radio(
+              value: 3,
+              groupValue: RadioValor,
+              onChanged: (int? change) {
+                setState(
+                  () {
+                    RadioValor = change!;
+                    print(RadioValor);
+                  },
+                );
+              },
+            ),
+            const Text('Sistêmico', style: TextStyle(color: Colors.white)),
+          ],
+        ),
+        const SizedBox(height: 15),
+      ],
+    );
+  }
+
+  String radioConvert() {
+    switch (RadioValor) {
+      case 1:
+        return 'Manutenção';
+      case 2:
+        return 'Operacional';
+      case 3:
+        return 'Sistêmico';
+      default:
+        return '';
+    }
   }
 }
 
@@ -177,8 +269,10 @@ class CampoTempo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(25.0),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
       child: TextFormField(
+        focusNode:
+            FocusNode(canRequestFocus: false, descendantsAreFocusable: false),
         controller: controlador,
         inputFormatters: [_mascara],
         keyboardType: const TextInputType.numberWithOptions(),
@@ -189,6 +283,10 @@ class CampoTempo extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void teste() {
+    print('teste');
   }
 }
 
@@ -217,6 +315,14 @@ class BotaoAp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class RemoverBriloScroll extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
   }
 }
 

@@ -4,6 +4,7 @@ class EnvioDado {
   String voltaParada;
   String motivo;
   DateTime dateTime;
+  String radioDado;
 
   EnvioDado({
     required this.maquina,
@@ -11,5 +12,6 @@ class EnvioDado {
     required this.voltaParada,
     required this.motivo,
     required this.dateTime,
+    required this.radioDado,
   });
 }

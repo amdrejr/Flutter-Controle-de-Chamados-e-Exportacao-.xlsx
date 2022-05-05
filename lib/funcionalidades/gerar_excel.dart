@@ -17,6 +17,7 @@ class GerarExcel {
     sheet.getRangeByName('C1').setText('INICIO PARADA');
     sheet.getRangeByName('D1').setText('VOLTA PARADA');
     sheet.getRangeByName('E1').setText('MOTIVO PARADA');
+    sheet.getRangeByName('F1').setText('NATUREZA');
 
     ///// Passando dados gerados para planilha Excel
     int index = 2;
@@ -28,6 +29,8 @@ class GerarExcel {
       sheet.getRangeByName('C$index').setText(dados[i].inicioParada);
       sheet.getRangeByName('D$index').setText(dados[i].voltaParada);
       sheet.getRangeByName('E$index').setText(dados[i].motivo);
+      sheet.getRangeByName('F$index').setText(dados[i].radioDado);
+
       index++;
     }
     /////
