@@ -16,7 +16,7 @@ List<EnvioDado> dados = [];
 class _FormularioState extends State<Formulario> {
   String? valorMaq;
   String? valorMotivo;
-  int RadioValor = 1;
+  int radioValor = 1;
 
   final TextEditingController inicioController = TextEditingController();
   final TextEditingController terminoController = TextEditingController();
@@ -188,12 +188,12 @@ class _FormularioState extends State<Formulario> {
           children: [
             Radio(
               value: 1,
-              groupValue: RadioValor,
+              groupValue: radioValor,
               onChanged: (int? change) {
                 setState(
                   () {
-                    RadioValor = change!;
-                    print(RadioValor);
+                    radioValor = change!;
+                    print(radioValor);
                   },
                 );
               },
@@ -206,12 +206,12 @@ class _FormularioState extends State<Formulario> {
           children: [
             Radio(
               value: 2,
-              groupValue: RadioValor,
+              groupValue: radioValor,
               onChanged: (int? change) {
                 setState(
                   () {
-                    RadioValor = change!;
-                    print(RadioValor);
+                    radioValor = change!;
+                    print(radioValor);
                   },
                 );
               },
@@ -224,12 +224,12 @@ class _FormularioState extends State<Formulario> {
           children: [
             Radio(
               value: 3,
-              groupValue: RadioValor,
+              groupValue: radioValor,
               onChanged: (int? change) {
                 setState(
                   () {
-                    RadioValor = change!;
-                    print(RadioValor);
+                    radioValor = change!;
+                    print(radioValor);
                   },
                 );
               },
@@ -243,7 +243,7 @@ class _FormularioState extends State<Formulario> {
   }
 
   String radioConvert() {
-    switch (RadioValor) {
+    switch (radioValor) {
       case 1:
         return 'Manutenção';
       case 2:

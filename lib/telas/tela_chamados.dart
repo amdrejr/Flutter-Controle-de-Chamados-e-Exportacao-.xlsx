@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
-import 'package:projeto_faculdade/funcionalidades/drawer_navegacao.dart';
 import 'package:projeto_faculdade/funcionalidades/envio_dado.dart';
 import 'package:projeto_faculdade/funcionalidades/formulario.dart';
 import 'package:projeto_faculdade/funcionalidades/gerar_excel.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_faculdade/telas/tela_chamados.dart';
+import 'package:projeto_faculdade/telas/tela_login.dart';
 import 'package:projeto_faculdade/telas/tela_principal.dart';
 
 class DrawerNavegacao extends StatelessWidget {
@@ -12,9 +13,9 @@ class DrawerNavegacao extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text('Nome do Usuário'),
-            accountEmail: Text('RA: 123456789'),
+          UserAccountsDrawerHeader(
+            accountName: Text(usuarioLogado),
+            accountEmail: const Text('RA: 221962019'),
           ),
           /* ListTile do Drawer, ir para tela de lançar chamados
           ListTile(
@@ -47,11 +48,14 @@ class DrawerNavegacao extends StatelessWidget {
               );
             },
           ),
-          const ListTile(
-            enabled: false,
-            leading: Icon(Icons.logout),
-            title: Text('Logout'),
-            subtitle: Text('Desconectar'),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            subtitle: const Text('Desconectar'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
           )
         ],
       ),

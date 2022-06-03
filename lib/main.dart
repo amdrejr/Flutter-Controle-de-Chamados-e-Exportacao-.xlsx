@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_faculdade/telas/tela_login.dart';
 import 'telas/tela_principal.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const TelaPrincipal(),
+        home: Login(),
         theme: ThemeData.dark().copyWith(
           hintColor: corTexto,
           textTheme:
