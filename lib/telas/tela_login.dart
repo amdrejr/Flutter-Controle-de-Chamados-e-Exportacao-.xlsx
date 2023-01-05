@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
                     style: const TextStyle(),
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                        label: Text('Digite seu e-mail'),
+                        label: const Text('Digite seu e-mail'),
                         focusColor: Colors.red,
                         labelStyle: const TextStyle(),
                         enabledBorder: const OutlineInputBorder(
@@ -83,7 +83,7 @@ class _LoginState extends State<Login> {
                     style: const TextStyle(),
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                        label: Text('Digite sua senha:'),
+                        label: const Text('Digite sua senha:'),
                         focusColor: Colors.red,
                         labelStyle: const TextStyle(),
                         enabledBorder: const OutlineInputBorder(
