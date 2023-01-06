@@ -48,14 +48,14 @@ O segundo botão, ‘Gerar Planilha’, ao clicar, será gerado um documento .xl
 
 # Resultados e conclusão
 
-**Este projeto não se encontra em sua versão final**, trata-se apenas da parte visual (front-end) finalizada, ainda passível de atualizações e melhorias futuras. 
+**Este projeto não se encontra em sua versão final**, trata-se apenas da parte visual (front-end) semi-finalizada, ainda passível de atualizações e melhorias futuras. 
 
-Para deixá-lo em um nível utilizável profissionalmente, falta os seguintes pontos:
+Para deixá-lo em um nível utilizável profissionalmente, faltam os seguintes pontos:
 - [ ] Implementar sistema de login a um banco de dados;
 - [ ] Usuários poderem ver todos os chamados lançados por outros usuários que estiverem em sua mesma base (banco);
 - [ ] Nova tela para gestão da manutenção dos chamados, a onde seria passado o status da situação referente ao andamento da correção.
 
-A empresa Riachuelo se demonstrou interessada no aplicativo em questão devido seus savings e sua simplicidade de uso, contudo, levantou a questão da necessidade de alguns aprofundamentos antes da sua implantação real na companhia, como por exemplo a comunicação com um banco de dados real e um software de desktop para a visualização dos chamados abertos também em um pc, rodando full time, como também os pontos levantados anteriormente.
+A empresa **Riachuelo** se demonstrou interessada no aplicativo em questão devido seus savings e sua simplicidade de uso, contudo, levantou a questão da necessidade de alguns aprofundamentos antes da sua implantação real na companhia, como por exemplo a comunicação com um banco de dados real e um software de desktop para a visualização dos chamados abertos também em um pc, rodando full time, como também os demais pontos levantados anteriormente.
 
 # Vídeo apresentação do projeto
 https://youtu.be/Jifg4OZhcHg
